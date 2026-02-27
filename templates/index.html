@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .suggestions {
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            background: white;
+            width: 200px;
+            display: none;
+        }
+        .suggestions div {
+            padding: 5px;
+            cursor: pointer;
+        }
+        .suggestions div:hover {
+            background: #f0f0f0;
+        }
+        form {
+            position: relative;
+            width: 300px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Movie Recommendation System</h1>
+    <p>You can get recommendations on movies that you might like <br> based on a movie that you watched previously and liked.</p>
+    
+    <div>
+        <form action="/" method="post">
+            <input type="text" name="movie_title" placeholder="Search.." id="movie_title" required autocomplete="off">
+            <div id="suggestions" class="suggestions"></div>
+            <button type="submit">Get Recommendations</button>
+        </form>
+    </div>  
+
+    <script>
+        $(document).ready(function() {
+            $('#movie_title').on('input', function() {
+                let query = $(this).val();
+                if (query.length > 1) {
+                    $.ajax({
+                        url: '/autocomplete',
+                        data: { q: query },
+                        success: function(response) {
+                            let suggestionsBox = $('#suggestions');
+                            suggestionsBox.empty().show();
+                            response.forEach(function(movie) {
+                                suggestionsBox.append('<div onclick="selectMovie(\'' + movie + '\')">' + movie + '</div>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#suggestions').hide();
+                }
+            });
+        });
+
+        function selectMovie(title) {
+            $('#movie_title').val(title);
+            $('#suggestions').hide();
+        }
+    </script>
+</body>
+</html>
+    

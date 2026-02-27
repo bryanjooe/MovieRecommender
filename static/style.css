@@ -1,0 +1,86 @@
+*{
+    color: rgb(255, 255, 255);
+    margin:0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: rgb(31, 38, 49);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+h1 {
+    /* color: #333; */
+    font-size: 3vw;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+h1:hover{
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,      
+    0 0 20px #00bbff,
+    0 0 42px #00bbff;
+}
+
+p{
+    font-size:0.9vw;
+    margin-bottom: 30px;
+
+    font-family: "Nunito", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+/* form {
+    margin: 5px;
+} */
+
+input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('https://icons.veryicon.com/png/o/miscellaneous/monochrome-icon-1/search-521.png');
+    background-size: 22px 22px;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+
+    color:black;
+
+    outline: none;
+
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background-color: #27a1d9;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2987b2;
+}
+
+ul {
+    list-style-type: none;
+}
